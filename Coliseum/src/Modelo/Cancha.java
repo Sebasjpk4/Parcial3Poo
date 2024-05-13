@@ -1,9 +1,11 @@
 package Modelo;
 
+import Modelo.Cliente;
 public class Cancha {
 
     private int Cantidad;
     private float valor;
+    private Cliente C;
     private String Nombre;
     private String Adicionales[] = new String[6]; // Entrenador personal, Pesas, Cauchos, Medkit, Conos, Medicos, Escalera, ARRAYLIST
 
