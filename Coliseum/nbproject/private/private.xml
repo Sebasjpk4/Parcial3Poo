@@ -4,11 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/InicioFrame.java</file>
+            <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Singleton.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/LoginFrame.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/Store.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/ConfirmarReservaFrame.java</file>
+            <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Memento/Venta.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Datos.java</file>
+            <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Memento/Cuidador.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/EditarFrame.java</file>
+            <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Memento/MementoVenta.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Vista/VentaCorrectaFrame.java</file>
             <file>file:/C:/Users/Sebas/Documents/GitHub/Parcial3Poo/Coliseum/src/Controlador/Validaciones.java</file>
         </group>
