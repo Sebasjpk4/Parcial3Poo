@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
+
+import Controlador.CanchaBuilder;
 
 /**
  *
@@ -13,6 +11,7 @@ public class Store extends javax.swing.JFrame {
     /**
      * Creates new form Store
      */
+    CanchaBuilder builder = CanchaBuilder.getInstance();
     public Store() {
         initComponents();
     }
@@ -27,14 +26,53 @@ public class Store extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblCTenis = new javax.swing.JLabel();
+        lblCBeisbol = new javax.swing.JLabel();
+        lblCBaloncesto = new javax.swing.JLabel();
+        lblCFutbol = new javax.swing.JLabel();
         Close = new javax.swing.JLabel();
-        btnConfirmar = new javax.swing.JLabel();
+        btnTenis = new javax.swing.JLabel();
+        btnBeisbol = new javax.swing.JLabel();
+        btnBaloncesto = new javax.swing.JLabel();
+        btnFutbol = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCTenis.setBackground(new java.awt.Color(0, 0, 0));
+        lblCTenis.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCTenis.setForeground(new java.awt.Color(255, 255, 255));
+        lblCTenis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCTenis.setText("Cancha de Tenis");
+        lblCTenis.setOpaque(true);
+        jPanel1.add(lblCTenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 600, 230, 40));
+
+        lblCBeisbol.setBackground(new java.awt.Color(0, 0, 0));
+        lblCBeisbol.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCBeisbol.setForeground(new java.awt.Color(255, 255, 255));
+        lblCBeisbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCBeisbol.setText("Cancha de Beisbol");
+        lblCBeisbol.setOpaque(true);
+        jPanel1.add(lblCBeisbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 600, 230, 40));
+
+        lblCBaloncesto.setBackground(new java.awt.Color(0, 0, 0));
+        lblCBaloncesto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCBaloncesto.setForeground(new java.awt.Color(255, 255, 255));
+        lblCBaloncesto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCBaloncesto.setText("Cancha de Baloncesto");
+        lblCBaloncesto.setOpaque(true);
+        jPanel1.add(lblCBaloncesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 240, 260, 40));
+
+        lblCFutbol.setBackground(new java.awt.Color(0, 0, 0));
+        lblCFutbol.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCFutbol.setForeground(new java.awt.Color(255, 255, 255));
+        lblCFutbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCFutbol.setText("Cancha de Futbol");
+        lblCFutbol.setOpaque(true);
+        jPanel1.add(lblCFutbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 230, 40));
 
         Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -44,13 +82,37 @@ public class Store extends javax.swing.JFrame {
         });
         jPanel1.add(Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1840, 20, 60, 60));
 
-        btnConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTenis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTenis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfirmarMouseClicked(evt);
+                btnTenisMouseClicked(evt);
             }
         });
-        jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, 230, 40));
+        jPanel1.add(btnTenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 860, 230, 40));
+
+        btnBeisbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBeisbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBeisbolMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnBeisbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 860, 230, 40));
+
+        btnBaloncesto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBaloncesto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBaloncestoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnBaloncesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 500, 230, 40));
+
+        btnFutbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFutbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFutbolMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnFutbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, 230, 40));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ElegirCancha.png"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -73,11 +135,32 @@ public class Store extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_CloseMouseClicked
 
-    private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
+    private void btnFutbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFutbolMouseClicked
+        builder.setTipo("Futbol");
         ConfirmarReservaFrame v = new ConfirmarReservaFrame();
         v.setVisible(true);
-        // Comprobar login
-    }//GEN-LAST:event_btnConfirmarMouseClicked
+    }//GEN-LAST:event_btnFutbolMouseClicked
+
+    private void btnBaloncestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBaloncestoMouseClicked
+        // TODO add your handling code here:
+        builder.setTipo("Baloncesto");
+        ConfirmarReservaFrame v = new ConfirmarReservaFrame();
+        v.setVisible(true);
+    }//GEN-LAST:event_btnBaloncestoMouseClicked
+
+    private void btnBeisbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBeisbolMouseClicked
+        // TODO add your handling code here:
+        builder.setTipo("Beisbol");
+        ConfirmarReservaFrame v = new ConfirmarReservaFrame();
+        v.setVisible(true);
+    }//GEN-LAST:event_btnBeisbolMouseClicked
+
+    private void btnTenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTenisMouseClicked
+        // TODO add your handling code here:
+        builder.setTipo("Tenis");
+        ConfirmarReservaFrame v = new ConfirmarReservaFrame();
+        v.setVisible(true);
+    }//GEN-LAST:event_btnTenisMouseClicked
 
     /**
      * @param args the command line arguments
@@ -117,7 +200,14 @@ public class Store extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Fondo;
-    private javax.swing.JLabel btnConfirmar;
+    private javax.swing.JLabel btnBaloncesto;
+    private javax.swing.JLabel btnBeisbol;
+    private javax.swing.JLabel btnFutbol;
+    private javax.swing.JLabel btnTenis;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCBaloncesto;
+    private javax.swing.JLabel lblCBeisbol;
+    private javax.swing.JLabel lblCFutbol;
+    private javax.swing.JLabel lblCTenis;
     // End of variables declaration//GEN-END:variables
 }

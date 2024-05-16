@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
 import Controlador.Validaciones;
 import java.awt.Color;
-import javax.swing.Icon;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,10 +11,10 @@ import javax.swing.ImageIcon;
  */
 public class ConfirmarReservaFrame extends javax.swing.JFrame {
 
-    public int c = 0;
+    public int sw = 0;
     public int Horas;
 //    Icon Imagenes  = new ImageIcon(getClass().getResource("1hora.png"));
-    Icon miIcono = new ImageIcon("1hora.png");
+    ImageIcon icono;
 
     /**
      * Creates new form ConfirmarReserva
@@ -41,11 +37,10 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         Close = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lblMinuto = new javax.swing.JTextField();
-        lblHora = new javax.swing.JTextField();
         lblFecha = new javax.swing.JTextField();
         lblNombre = new javax.swing.JTextField();
         lblElegir = new javax.swing.JLabel();
+        lblElegido = new javax.swing.JLabel();
         pnlSelector = new javax.swing.JPanel();
         optPrimeraHora = new javax.swing.JLabel();
         optSegundaHora = new javax.swing.JLabel();
@@ -55,12 +50,13 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         optDoceH = new javax.swing.JLabel();
         optSextaH = new javax.swing.JLabel();
         optAllDay = new javax.swing.JLabel();
-        bg = new javax.swing.JLabel();
-        lblElegido = new javax.swing.JLabel();
+        lblbg = new javax.swing.JLabel();
         labelHorasC = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox1 = new javax.swing.JCheckBox();
         btnConfirmar = new javax.swing.JLabel();
+        jcbHora = new javax.swing.JComboBox<>();
+        jcbMinutos = new javax.swing.JComboBox<>();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,50 +91,6 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 310, 680, 600));
-
-        lblMinuto.setBackground(new java.awt.Color(22, 27, 34));
-        lblMinuto.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
-        lblMinuto.setForeground(new java.awt.Color(204, 204, 204));
-        lblMinuto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lblMinuto.setText("00");
-        lblMinuto.setBorder(null);
-        lblMinuto.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblMinuto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMinutoMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMinutoMouseExited(evt);
-            }
-        });
-        lblMinuto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblMinutoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(lblMinuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 80, 30));
-
-        lblHora.setBackground(new java.awt.Color(22, 27, 34));
-        lblHora.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
-        lblHora.setForeground(new java.awt.Color(204, 204, 204));
-        lblHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lblHora.setText("00");
-        lblHora.setBorder(null);
-        lblHora.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblHora.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblHoraMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblHoraMouseExited(evt);
-            }
-        });
-        lblHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblHoraActionPerformed(evt);
-            }
-        });
-        jPanel1.add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 80, 30));
 
         lblFecha.setBackground(new java.awt.Color(22, 27, 34));
         lblFecha.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -190,157 +142,74 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         });
         jPanel1.add(lblElegir, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, 50, 50));
 
-        pnlSelector.setBackground(new java.awt.Color(13, 17, 23));
+        lblElegido.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        lblElegido.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 570, 690, 50));
+
+        pnlSelector.setBackground(new java.awt.Color(0, 0, 0));
+        pnlSelector.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         optPrimeraHora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optPrimeraHoraMouseClicked(evt);
             }
         });
+        pnlSelector.add(optPrimeraHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 754, 43));
 
         optSegundaHora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optSegundaHoraMouseClicked(evt);
             }
         });
+        pnlSelector.add(optSegundaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 104, 754, 43));
 
         optTerceraH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optTerceraHMouseClicked(evt);
             }
         });
+        pnlSelector.add(optTerceraH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 148, 754, 39));
 
         optCuartaH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optCuartaHMouseClicked(evt);
             }
         });
+        pnlSelector.add(optCuartaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 189, 754, 42));
 
         optQuintaH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optQuintaHMouseClicked(evt);
             }
         });
+        pnlSelector.add(optQuintaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 231, 754, 37));
 
         optDoceH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optDoceHMouseClicked(evt);
             }
         });
+        pnlSelector.add(optDoceH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 315, 754, 34));
 
         optSextaH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optSextaHMouseClicked(evt);
             }
         });
+        pnlSelector.add(optSextaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 271, 754, 41));
 
         optAllDay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 optAllDayMouseClicked(evt);
             }
         });
+        pnlSelector.add(optAllDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 352, 754, 41));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Seleccionar/ElegirClick.png"))); // NOI18N
-        bg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bgMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlSelectorLayout = new javax.swing.GroupLayout(pnlSelector);
-        pnlSelector.setLayout(pnlSelectorLayout);
-        pnlSelectorLayout.setHorizontalGroup(
-            pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                .addComponent(optPrimeraHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSelectorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optSegundaHora, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optTerceraH, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optCuartaH, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optQuintaH, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optDoceH, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optSextaH, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addComponent(optAllDay, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        pnlSelectorLayout.setVerticalGroup(
-            pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSelectorLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(optPrimeraHora, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSelectorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSelectorLayout.createSequentialGroup()
-                    .addGap(104, 104, 104)
-                    .addComponent(optSegundaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(283, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(148, Short.MAX_VALUE)
-                    .addComponent(optTerceraH, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(243, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(189, Short.MAX_VALUE)
-                    .addComponent(optCuartaH, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(199, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(231, Short.MAX_VALUE)
-                    .addComponent(optQuintaH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(162, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(315, Short.MAX_VALUE)
-                    .addComponent(optDoceH, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(81, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(271, Short.MAX_VALUE)
-                    .addComponent(optSextaH, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(118, Short.MAX_VALUE)))
-            .addGroup(pnlSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectorLayout.createSequentialGroup()
-                    .addContainerGap(352, Short.MAX_VALUE)
-                    .addComponent(optAllDay, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
-        );
+        lblbg.setBackground(new java.awt.Color(0, 0, 0));
+        lblbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Seleccionar/ElegirClick.png"))); // NOI18N
+        pnlSelector.add(lblbg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 430));
 
         jPanel1.add(pnlSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 760, 430));
-
-        lblElegido.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblElegido.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lblElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 570, 690, 50));
 
         labelHorasC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1x/CantidadDeHoras.png"))); // NOI18N
         jPanel1.add(labelHorasC, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 760, 70));
@@ -366,6 +235,12 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1510, 980, 330, 50));
+
+        jcbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jcbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
+
+        jcbMinutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jcbMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmarReserva.png"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -415,53 +290,16 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblFechaActionPerformed
 
-    private void lblHoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHoraMouseClicked
-        lblHora.setText("");
-    }//GEN-LAST:event_lblHoraMouseClicked
-
-    private void lblHoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHoraMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblHoraMouseExited
-
-    private void lblHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblHoraActionPerformed
-
-    private void lblMinutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinutoMouseClicked
-        lblMinuto.setText("");
-        int m = 0;
-
-        try {
-            m = Integer.parseInt(lblMinuto.getText());
-        } catch (Exception e) {
-            System.out.println("el dato tiene que ser un numero");
-        }
-        if (m < 30) {
-            m = 0;
-        } else if (m >= 30) {
-            m = 30;
-        }
-    }//GEN-LAST:event_lblMinutoMouseClicked
-
-    private void lblMinutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinutoMouseExited
-        lblMinuto.setText(Integer.toString(Validaciones.RedondearMinutos(lblMinuto.getText())));
-    }//GEN-LAST:event_lblMinutoMouseExited
-
-    private void lblMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblMinutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblMinutoActionPerformed
-
     private void lblElegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblElegirMouseClicked
-        if (c == 0) {
-            c = 1;
+        if (sw == 0) {
             pnlSelector.setVisible(true);
-            Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\ElegirClick.png");
-            bg.setIcon(i);
+            sw = 1;
+            icono = new ImageIcon("img/Seleccionar/ElegirClick.png");
+            //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
         } else {
             pnlSelector.setVisible(false);
-            c = 0;
+            sw = 0;
         }
-
         lblElegido.setText(Validaciones.Elegir(Horas));
 
     }//GEN-LAST:event_lblElegirMouseClicked
@@ -469,61 +307,81 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         ConfirmarReservaFrame v = new ConfirmarReservaFrame();
         v.setVisible(true);
-        int min = Validaciones.RedondearMinutos(lblMinuto.getText());
+        String min = jcbMinutos.getSelectedItem().toString();
         // 
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
     private void optAllDayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optAllDayMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\24 horas.png");
-        bg.setIcon(i);
+        //icono = new ImageIcon("img/Seleccionar/24 horas.png");
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
+        lblElegido.setText("Todo el día");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 24;
     }//GEN-LAST:event_optAllDayMouseClicked
 
     private void optSextaHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optSextaHMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\6 horas.png");
-        bg.setIcon(i);
+        //icono = new ImageIcon("img/Seleccionar/6 horas.png");
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
+        lblElegido.setText("6 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 6;
     }//GEN-LAST:event_optSextaHMouseClicked
 
     private void optDoceHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optDoceHMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\12 horas.png");
-        bg.setIcon(i);
+        //icono = new ImageIcon("img/Seleccionar/12 horas.png");
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
+        lblElegido.setText("12 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 12;
     }//GEN-LAST:event_optDoceHMouseClicked
 
     private void optQuintaHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optQuintaHMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\5 horas.png");
+        //icono = new ImageIcon("img/Seleccionar/5 horas.png");
+        lblElegido.setText("5 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 5;
-        bg.setIcon(i);
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_optQuintaHMouseClicked
 
     private void optCuartaHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optCuartaHMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\4 horas.png");
+        //icono = new ImageIcon("img/Seleccionar/4 horas.png");
+        lblElegido.setText("4 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 4;
-        bg.setIcon(i);
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_optCuartaHMouseClicked
 
     private void optTerceraHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optTerceraHMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\3 horas.png");
-        bg.setIcon(i);
+        //icono = new ImageIcon("img/Seleccionar/3 horas.png");
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
+        lblElegido.setText("3 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 3;
     }//GEN-LAST:event_optTerceraHMouseClicked
 
     private void optSegundaHoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optSegundaHoraMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\2 horas.png");
+        //icono = new ImageIcon("img/Seleccionar/2 horas.png");
+        lblElegido.setText("2 Horas");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 2;
-        bg.setIcon(i);
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_optSegundaHoraMouseClicked
 
     private void optPrimeraHoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optPrimeraHoraMouseClicked
-        Icon i = new ImageIcon("C:\\Users\\Sebas\\Documents\\GitHub\\Parcial3Poo\\Coliseum\\src\\img\\Seleccionar\\1hora.png");
-        bg.setIcon(i);
+        //icono = new ImageIcon("img/Seleccionar/1hora.png");
+        //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
+        //lblElegido.setText("1 Hora");
+        pnlSelector.setVisible(false);
+        sw = 0;
         Horas = 1;
     }//GEN-LAST:event_optPrimeraHoraMouseClicked
-
-    private void bgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bgMouseExited
 
     private void SetImageLabel() {
 
@@ -565,20 +423,20 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Fondo;
-    private javax.swing.JLabel bg;
     private javax.swing.JLabel btnConfirmar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> jcbHora;
+    private javax.swing.JComboBox<String> jcbMinutos;
     private javax.swing.JLabel labelHorasC;
     private javax.swing.JLabel lblElegido;
     private javax.swing.JLabel lblElegir;
     private javax.swing.JTextField lblFecha;
-    private javax.swing.JTextField lblHora;
-    private javax.swing.JTextField lblMinuto;
     private javax.swing.JTextField lblNombre;
+    private javax.swing.JLabel lblbg;
     private javax.swing.JLabel optAllDay;
     private javax.swing.JLabel optCuartaH;
     private javax.swing.JLabel optDoceH;

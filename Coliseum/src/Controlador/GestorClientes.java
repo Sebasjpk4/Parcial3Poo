@@ -3,7 +3,6 @@ package Controlador;
 import Modelo.Cliente;
 import Modelo.ListaClientes;
 import Vista.LoginFrame;
-import javax.swing.JFrame;
 
 /**
  *
@@ -29,7 +28,8 @@ public class GestorClientes {
 
     public boolean registrarCliente() {
         Cliente cliente = vista.registrarCliente();
-        return clientes.agregarCliente(cliente);
+        clientes.agregarCliente(cliente);
+        return clientes.loginCliente(cliente);
     }
 
     public boolean loginCliente() {

@@ -2,7 +2,6 @@ package Controlador;
 
 import Modelo.ListaReservas;
 import Modelo.Reserva;
-import Vista.VentaCorrectaFrame;
 import javax.swing.JFrame;
 
 /**
@@ -20,7 +19,7 @@ public class GestorReservas {
         this.vista = vista;
     }
 
-    public GestorReservas getInstance(ListaReservas reservas, JFrame vista) {
+    public static GestorReservas getInstance(ListaReservas reservas, JFrame vista) {
         if (instance == null) {
             instance = new GestorReservas(reservas, vista);
         }

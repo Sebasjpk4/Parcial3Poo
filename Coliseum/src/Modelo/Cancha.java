@@ -1,6 +1,6 @@
 package Modelo;
 
-public abstract class Cancha {
+public class Cancha {
 
     private int cantidad;
     private float valor;
@@ -53,8 +53,8 @@ public abstract class Cancha {
         return tipo;
     }
 
-    public void setTipo(String Nombre) {
-        this.tipo = Nombre;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public boolean hasEntrenador() {

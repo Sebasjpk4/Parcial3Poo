@@ -197,6 +197,8 @@ public class LoginFrame extends javax.swing.JFrame {
             if (gc.registrarCliente()) {
                 lblRegistrarUser.setText("");
                 lblRegistrarContraseña.setText("");
+                InicioFrame inicio = new InicioFrame();
+                inicio.setVisible(true);
             } else {
                 
             }
