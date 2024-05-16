@@ -1,24 +1,30 @@
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Alfonso
  */
 public class Reserva {
 
+    private int id = 1;
     private int idreserva;
     private Cancha cancha;
     private Cliente cliente;
-    private String tiempo;
+    private Date inicio;
+    private Date fin;
 
     public Reserva() {
+        this.idreserva = id++;
     }
 
-    public Reserva(int idreserva, Cancha cancha, Cliente cliente, String tiempo) {
-        this.idreserva = idreserva;
+    public Reserva(Cancha cancha, Cliente cliente, Date inicio, Date fin) {
+        this.idreserva = id++;
         this.cancha = cancha;
         this.cliente = cliente;
-        this.tiempo = tiempo;
+        this.inicio = inicio;
+        this.fin = fin;
     }
 
     public int getIdreserva() {
@@ -41,11 +47,20 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public String getTiempo() {
-        return tiempo;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
     }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
 }

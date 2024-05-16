@@ -7,7 +7,6 @@ package Modelo;
 public class CanchaBaseball extends Cancha{
 
     public CanchaBaseball() {
-        super(0, 0, null);
-    }
-    
+        super(0, 0, "Baseball");
+    } 
 }

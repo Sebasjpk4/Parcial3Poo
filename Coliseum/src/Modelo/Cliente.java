@@ -1,6 +1,7 @@
 package Modelo;
 
 public class Cliente {
+    private String usuario;
     private String Contraseña;
     private String Nombre;
     private int ID;
@@ -8,7 +9,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String Contraseña, String Nombre, int ID) {
+    public Cliente(String usuario, String Contraseña, String Nombre, int ID) {
+        this.usuario = usuario;
         this.Contraseña = Contraseña;
         this.Nombre = Nombre;
         this.ID = ID;
@@ -37,5 +39,13 @@ public class Cliente {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
-   
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
 }

@@ -1,13 +1,8 @@
-
 package Modelo;
 
-public class CanchaBasket extends Cancha{
+public class CanchaBasket extends Cancha {
 
-    private int AdicionalesEspeciales[];
-    
     public CanchaBasket() {
-        super(0, 0, null);
+        super(0, 0, "Basket");
     }
-
-   
 }

@@ -1,5 +1,8 @@
 package Vista;
 
+import Controlador.GestorClientes;
+import Modelo.Cliente;
+import Modelo.ListaClientes;
 import java.awt.Color;
 
 /**
@@ -8,13 +11,18 @@ import java.awt.Color;
  */
 public class LoginFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginFrame
-     */
+    ListaClientes lista_cliente = new ListaClientes();
+    GestorClientes gc = GestorClientes.getInstance(lista_cliente, this);
+
     public LoginFrame() {
+        Cliente admin = new Cliente("admin", "Pr0gr4m4c10n", null, -1);
+        lista_cliente.agregarCliente(admin);
         initComponents();
     }
 
+    /**
+     * Creates new form LoginFrame
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,9 +153,13 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseMouseClicked
 
     private void BtnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLoginMouseClicked
-        InicioFrame v = new InicioFrame();
-        v.setVisible(true);
-        // Comprobar login
+        if (!lblLoginUser.getText().equals(null) 
+                && !lblLoginContraseña.getText().equals(null)) {
+            if (gc.loginCliente()) {
+                InicioFrame inicio = new InicioFrame();
+                inicio.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_BtnLoginMouseClicked
 
     private void lblLoginUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginUserMouseClicked
@@ -180,6 +192,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void BtnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistrarMouseClicked
         //  Registrar
+        if (!lblRegistrarUser.getText().equals(null)
+                && !lblRegistrarContraseña.getText().equals(null)) {
+            if (gc.registrarCliente()) {
+                lblRegistrarUser.setText("");
+                lblRegistrarContraseña.setText("");
+            } else {
+                
+            }
+        }
     }//GEN-LAST:event_BtnRegistrarMouseClicked
 
     /**
@@ -215,6 +236,20 @@ public class LoginFrame extends javax.swing.JFrame {
                 new LoginFrame().setVisible(true);
             }
         });
+    }
+
+    public Cliente registrarCliente() {
+        Cliente cliente = new Cliente(lblRegistrarUser.getText(),
+                lblRegistrarContraseña.getText(), "", 0);
+        return cliente;
+    }
+
+    public Cliente ingresoCliente() {
+        Cliente cliente = new Cliente();
+        System.out.println(lblLoginContraseña.getText());
+        cliente.setUsuario(lblLoginUser.getText());
+        cliente.setContraseña(lblLoginContraseña.getText());
+        return cliente;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

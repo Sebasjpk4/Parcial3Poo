@@ -1,13 +1,8 @@
 package Modelo;
-public class CanchaFutbol extends Cancha{
 
-    private int AdicionalesEspeciales []; // Balon de futbol, 
+public class CanchaFutbol extends Cancha {
 
-    public CanchaFutbol(int[] AdicionalesEspeciales, int Cantidad, float valor, String Nombre) {
-        super(Cantidad, valor, Nombre);
-        this.AdicionalesEspeciales = AdicionalesEspeciales;
+    public CanchaFutbol() {
+        super(0, 0, "Futbol");
     }
-
-    
-    
 }

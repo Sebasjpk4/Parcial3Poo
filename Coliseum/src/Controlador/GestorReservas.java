@@ -1,9 +1,9 @@
 package Controlador;
 
-import Modelo.Cancha;
-import Modelo.Cliente;
 import Modelo.ListaReservas;
 import Modelo.Reserva;
+import Vista.VentaCorrectaFrame;
+import javax.swing.JFrame;
 
 /**
  *
@@ -12,33 +12,30 @@ import Modelo.Reserva;
 public class GestorReservas {
 
     private static GestorReservas instance;
-    private int id_res = 0;
+    private ListaReservas reservas;
+    private JFrame vista;
 
-    private GestorReservas() {
+    private GestorReservas(ListaReservas reservas, JFrame vista) {
+        this.reservas = reservas;
+        this.vista = vista;
     }
 
-    public GestorReservas getInstance() {
+    public GestorReservas getInstance(ListaReservas reservas, JFrame vista) {
         if (instance == null) {
-            instance = new GestorReservas();
+            instance = new GestorReservas(reservas, vista);
         }
         return instance;
     }
-
-    public void registrarReserva(Cancha cancha, Cliente cliente, String tiempo) {
-        Reserva res = new Reserva(id_res++, cancha, cliente, tiempo);
-        ListaReservas.lista_reservas.add(res);
+    
+    public void crearReservacion(Reserva reserva){
+        reservas.registrarReserva(reserva);
     }
-
-    public void eliminarReserva(int id_reserva) {
-        ListaReservas.lista_reservas.removeIf(res -> res.getIdreserva() == id_reserva);
+    
+    public void editarReservacion(Reserva reserva){
+        reservas.editarReserva(reserva);
     }
-
-    public Reserva obtenerReserva(int id_reserva) {
-        for (Reserva res : ListaReservas.lista_reservas) {
-            if (res.getIdreserva() == id_reserva) {
-                return res;
-            }
-        }
-        return null;
+    
+    public void cancelarReservacion(int idreserva){
+        reservas.eliminarReserva(idreserva);
     }
 }
