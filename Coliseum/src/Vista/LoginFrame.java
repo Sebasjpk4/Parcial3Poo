@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
 import java.awt.Color;
@@ -150,7 +146,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void BtnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLoginMouseClicked
         InicioFrame v = new InicioFrame();
-     v.setVisible(true);
+        v.setVisible(true);
         // Comprobar login
     }//GEN-LAST:event_BtnLoginMouseClicked
 
