@@ -1,6 +1,8 @@
 package Vista;
 
 import Controlador.CanchaBuilder;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -31,6 +33,10 @@ public class Store extends javax.swing.JFrame {
         lblCBaloncesto = new javax.swing.JLabel();
         lblCFutbol = new javax.swing.JLabel();
         Close = new javax.swing.JLabel();
+        lblimgTenis = new javax.swing.JLabel();
+        lblimgBeisbol = new javax.swing.JLabel();
+        lblimgBaloncesto = new javax.swing.JLabel();
+        lblimgFutbol = new javax.swing.JLabel();
         btnTenis = new javax.swing.JLabel();
         btnBeisbol = new javax.swing.JLabel();
         btnBaloncesto = new javax.swing.JLabel();
@@ -42,7 +48,7 @@ public class Store extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCTenis.setBackground(new java.awt.Color(0, 0, 0));
+        lblCTenis.setBackground(new java.awt.Color(15, 19, 25));
         lblCTenis.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCTenis.setForeground(new java.awt.Color(255, 255, 255));
         lblCTenis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -50,7 +56,7 @@ public class Store extends javax.swing.JFrame {
         lblCTenis.setOpaque(true);
         jPanel1.add(lblCTenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 600, 230, 40));
 
-        lblCBeisbol.setBackground(new java.awt.Color(0, 0, 0));
+        lblCBeisbol.setBackground(new java.awt.Color(15, 19, 25));
         lblCBeisbol.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCBeisbol.setForeground(new java.awt.Color(255, 255, 255));
         lblCBeisbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -58,7 +64,7 @@ public class Store extends javax.swing.JFrame {
         lblCBeisbol.setOpaque(true);
         jPanel1.add(lblCBeisbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 600, 230, 40));
 
-        lblCBaloncesto.setBackground(new java.awt.Color(0, 0, 0));
+        lblCBaloncesto.setBackground(new java.awt.Color(15, 19, 25));
         lblCBaloncesto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCBaloncesto.setForeground(new java.awt.Color(255, 255, 255));
         lblCBaloncesto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -66,7 +72,7 @@ public class Store extends javax.swing.JFrame {
         lblCBaloncesto.setOpaque(true);
         jPanel1.add(lblCBaloncesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 240, 260, 40));
 
-        lblCFutbol.setBackground(new java.awt.Color(0, 0, 0));
+        lblCFutbol.setBackground(new java.awt.Color(15, 19, 25));
         lblCFutbol.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCFutbol.setForeground(new java.awt.Color(255, 255, 255));
         lblCFutbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -81,6 +87,18 @@ public class Store extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1840, 20, 60, 60));
+
+        lblimgTenis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tenis.png"))); // NOI18N
+        jPanel1.add(lblimgTenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1175, 645, 343, 200));
+
+        lblimgBeisbol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/beisbol.png"))); // NOI18N
+        jPanel1.add(lblimgBeisbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 645, 200, 200));
+
+        lblimgBaloncesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/baloncesto.png"))); // NOI18N
+        jPanel1.add(lblimgBaloncesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 285, 340, 200));
+
+        lblimgFutbol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/futbol.png"))); // NOI18N
+        jPanel1.add(lblimgFutbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 285, 283, 200));
 
         btnTenis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTenis.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,5 +227,9 @@ public class Store extends javax.swing.JFrame {
     private javax.swing.JLabel lblCBeisbol;
     private javax.swing.JLabel lblCFutbol;
     private javax.swing.JLabel lblCTenis;
+    private javax.swing.JLabel lblimgBaloncesto;
+    private javax.swing.JLabel lblimgBeisbol;
+    private javax.swing.JLabel lblimgFutbol;
+    private javax.swing.JLabel lblimgTenis;
     // End of variables declaration//GEN-END:variables
 }

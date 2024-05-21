@@ -18,6 +18,10 @@ public class GestorClientes {
         GestorClientes.clientes = clientes;
         GestorClientes.vista = vista;
     }
+    
+    public static GestorClientes getInstance(){
+        return instance;
+    }
 
     public static GestorClientes getInstance(ListaClientes clientes, LoginFrame vista) {
         if (instance == null) {
@@ -28,12 +32,27 @@ public class GestorClientes {
 
     public boolean registrarCliente() {
         Cliente cliente = vista.registrarCliente();
+        if (clientes.existeUsuario(cliente)) {
+            vista.mostrarRegistrado();
+            return false;
+        }
         clientes.agregarCliente(cliente);
-        return clientes.loginCliente(cliente);
+        vista.ocultarAvisos();
+        return true;
     }
 
     public boolean loginCliente() {
         Cliente cliente = vista.ingresoCliente();
-        return clientes.loginCliente(cliente);
+        if (clientes.existeUsuario(cliente)) {
+            if (clientes.loginCliente(cliente)) {
+                vista.ocultarAvisos();
+                return true;
+            } else {
+                vista.mostrarContraseñaIncorrecta();
+                return false;
+            }
+        }
+        vista.mostrarNoRegistrado();
+        return false;
     }
 }

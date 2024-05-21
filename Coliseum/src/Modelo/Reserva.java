@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.util.Date;
-
 /**
  *
  * @author Alfonso
@@ -12,19 +10,17 @@ public class Reserva {
     private int idreserva;
     private Cancha cancha;
     private Cliente cliente;
-    private Date inicio;
-    private Date fin;
+    private Horario horario;
 
     public Reserva() {
         this.idreserva = id++;
     }
 
-    public Reserva(Cancha cancha, Cliente cliente, Date inicio, Date fin) {
+    public Reserva(Cancha cancha, Cliente cliente, Horario horario) {
         this.idreserva = id++;
         this.cancha = cancha;
         this.cliente = cliente;
-        this.inicio = inicio;
-        this.fin = fin;
+        this.horario = horario;
     }
 
     public int getIdreserva() {
@@ -47,20 +43,11 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public Date getInicio() {
-        return inicio;
+    public Horario getHorario() {
+        return horario;
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    public void setHorario(Horario horario) {
+        this.horario = horario;
     }
-
-    public Date getFin() {
-        return fin;
-    }
-
-    public void setFin(Date fin) {
-        this.fin = fin;
-    }
-
 }

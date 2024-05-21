@@ -1,6 +1,9 @@
 package Modelo;
 
+
 public class Cliente {
+
+    private static Cliente instance;
     private String usuario;
     private String Contraseña;
     private String Nombre;
@@ -47,5 +50,8 @@ public class Cliente {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
+
+    public void reset() {
+        instance = new Cliente();
+    }
 }

@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
+
+import Controlador.CanchaBuilder;
+import Controlador.ReservaBuilder;
+import Modelo.Reserva;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -13,8 +15,14 @@ public class VentaCorrectaFrame extends javax.swing.JFrame {
     /**
      * Creates new form VentaCorrectaFrame
      */
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat hf = new SimpleDateFormat("hh:mm");
+        CanchaBuilder cb = CanchaBuilder.getInstance();
+        ReservaBuilder rb = ReservaBuilder.getInstance();
+
     public VentaCorrectaFrame() {
         initComponents();
+        llenarCampos();
     }
 
     /**
@@ -29,9 +37,32 @@ public class VentaCorrectaFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblHoraFinal = new javax.swing.JLabel();
+        txtHoraFinal = new javax.swing.JTextField();
+        lblHoraInicio = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
+        lblTipoCancha = new javax.swing.JLabel();
+        txtHoraInicio = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        lblIdReserva = new javax.swing.JLabel();
+        txtIdReserva = new javax.swing.JTextField();
+        txtTipoCancha = new javax.swing.JTextField();
+        lblBotiquin = new javax.swing.JLabel();
+        txtBotiquin = new javax.swing.JTextField();
+        lblEntrenador = new javax.swing.JLabel();
+        txtEntrenador = new javax.swing.JTextField();
+        lblConos = new javax.swing.JLabel();
+        txtConos = new javax.swing.JTextField();
+        lblCauchos = new javax.swing.JLabel();
+        txtCauchos = new javax.swing.JTextField();
+        lblPesas = new javax.swing.JLabel();
+        txtPesas = new javax.swing.JTextField();
+        lblMedico = new javax.swing.JLabel();
+        txtMedico = new javax.swing.JTextField();
+        lblBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -48,8 +79,122 @@ public class VentaCorrectaFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 640, 360, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mensaje de confirmacion.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblHoraFinal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblHoraFinal.setForeground(new java.awt.Color(255, 255, 255));
+        lblHoraFinal.setText("Hora de Inicio");
+        jPanel1.add(lblHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, 160, 20));
+
+        txtHoraFinal.setEditable(false);
+        txtHoraFinal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txtHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 130, -1));
+
+        lblHoraInicio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblHoraInicio.setForeground(new java.awt.Color(255, 255, 255));
+        lblHoraInicio.setText("Hora de Inicio");
+        jPanel1.add(lblHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 160, 20));
+
+        lblFecha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha.setText("Fecha");
+        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 160, 20));
+
+        lblTipoCancha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblTipoCancha.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipoCancha.setText("ID Reserva:");
+        jPanel1.add(lblTipoCancha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 100, 30));
+
+        txtHoraInicio.setEditable(false);
+        txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txtHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 130, -1));
+
+        txtFecha.setEditable(false);
+        txtFecha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 130, -1));
+
+        lblIdReserva.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblIdReserva.setForeground(new java.awt.Color(255, 255, 255));
+        lblIdReserva.setText("Tipo de Cancha");
+        jPanel1.add(lblIdReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 160, 20));
+
+        txtIdReserva.setEditable(false);
+        txtIdReserva.setBackground(new java.awt.Color(15, 19, 25));
+        txtIdReserva.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIdReserva.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdReserva.setBorder(null);
+        jPanel1.add(txtIdReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 130, 30));
+
+        txtTipoCancha.setEditable(false);
+        txtTipoCancha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(txtTipoCancha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 130, -1));
+
+        lblBotiquin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblBotiquin.setForeground(new java.awt.Color(255, 255, 255));
+        lblBotiquin.setText("Botiquín");
+        jPanel1.add(lblBotiquin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 100, 20));
+
+        txtBotiquin.setEditable(false);
+        txtBotiquin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtBotiquin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtBotiquin.setText("No");
+        jPanel1.add(txtBotiquin, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, 50, -1));
+
+        lblEntrenador.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEntrenador.setForeground(new java.awt.Color(255, 255, 255));
+        lblEntrenador.setText("Entrenador");
+        jPanel1.add(lblEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 100, 20));
+
+        txtEntrenador.setEditable(false);
+        txtEntrenador.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEntrenador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEntrenador.setText("No");
+        jPanel1.add(txtEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 50, -1));
+
+        lblConos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblConos.setForeground(new java.awt.Color(255, 255, 255));
+        lblConos.setText("Conos");
+        jPanel1.add(lblConos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 90, 20));
+
+        txtConos.setEditable(false);
+        txtConos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtConos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtConos.setText("No");
+        jPanel1.add(txtConos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, 50, -1));
+
+        lblCauchos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCauchos.setForeground(new java.awt.Color(255, 255, 255));
+        lblCauchos.setText("Cauchos");
+        jPanel1.add(lblCauchos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, 90, 20));
+
+        txtCauchos.setEditable(false);
+        txtCauchos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCauchos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCauchos.setText("No");
+        jPanel1.add(txtCauchos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 50, -1));
+
+        lblPesas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPesas.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesas.setText("Pesas");
+        jPanel1.add(lblPesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 90, 20));
+
+        txtPesas.setEditable(false);
+        txtPesas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPesas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPesas.setText("No");
+        jPanel1.add(txtPesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 50, -1));
+
+        lblMedico.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMedico.setForeground(new java.awt.Color(255, 255, 255));
+        lblMedico.setText("Médico");
+        jPanel1.add(lblMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 100, 20));
+
+        txtMedico.setEditable(false);
+        txtMedico.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtMedico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMedico.setText("No");
+        jPanel1.add(txtMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 50, -1));
+
+        lblBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mensaje de confirmacion.png"))); // NOI18N
+        jPanel1.add(lblBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,11 +208,18 @@ public class VentaCorrectaFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         ConfirmarReservaFrame v = new ConfirmarReservaFrame();
         v.setVisible(true);
+        this.dispose();
+        InicioFrame ini = new InicioFrame();
+        ini.setVisible(true);
+        v.dispose();
+        rb.reset();
+        cb.reset();
         // Comprobar login
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
@@ -105,11 +257,62 @@ public class VentaCorrectaFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void llenarCampos(){
+        ReservaBuilder rb = ReservaBuilder.getInstance();
+        Reserva res = rb.getReserva();
+        
+        txtTipoCancha.setText(res.getCancha().getTipo());
+        txtFecha.setText(df.format(res.getHorario().getFecha()));
+        txtHoraInicio.setText(hf.format(res.getHorario().getHora_inicio()));
+        txtHoraFinal.setText(hf.format(res.getHorario().getHora_fin()));
+        txtIdReserva.setText(String.valueOf(res.getIdreserva()));
+        if (res.getCancha().hasBotiquin()) {
+            txtBotiquin.setText("Sí");
+        }
+        if (res.getCancha().hasCauchos()) {
+            txtCauchos.setText("Sí");
+        }
+        if (res.getCancha().hasConos()) {
+            txtConos.setText("Sí");
+        }
+        if (res.getCancha().hasEntrenador()) {
+            txtEntrenador.setText("Sí");
+        }
+        if (res.getCancha().hasMedico()) {
+            txtMedico.setText("Sí");
+        }
+        if (res.getCancha().hasPesas()) {
+            txtPesas.setText("Sí");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnConfirmar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBG;
+    private javax.swing.JLabel lblBotiquin;
+    private javax.swing.JLabel lblCauchos;
+    private javax.swing.JLabel lblConos;
+    private javax.swing.JLabel lblEntrenador;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblHoraFinal;
+    private javax.swing.JLabel lblHoraInicio;
+    private javax.swing.JLabel lblIdReserva;
+    private javax.swing.JLabel lblMedico;
+    private javax.swing.JLabel lblPesas;
+    private javax.swing.JLabel lblTipoCancha;
+    private javax.swing.JTextField txtBotiquin;
+    private javax.swing.JTextField txtCauchos;
+    private javax.swing.JTextField txtConos;
+    private javax.swing.JTextField txtEntrenador;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtHoraFinal;
+    private javax.swing.JTextField txtHoraInicio;
+    private javax.swing.JTextField txtIdReserva;
+    private javax.swing.JTextField txtMedico;
+    private javax.swing.JTextField txtPesas;
+    private javax.swing.JTextField txtTipoCancha;
     // End of variables declaration//GEN-END:variables
 }

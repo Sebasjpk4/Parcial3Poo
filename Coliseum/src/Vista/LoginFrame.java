@@ -3,7 +3,6 @@ package Vista;
 import Controlador.GestorClientes;
 import Modelo.Cliente;
 import Modelo.ListaClientes;
-import java.awt.Color;
 
 /**
  *
@@ -15,9 +14,9 @@ public class LoginFrame extends javax.swing.JFrame {
     GestorClientes gc = GestorClientes.getInstance(lista_cliente, this);
 
     public LoginFrame() {
-        Cliente admin = new Cliente("admin", "Pr0gr4m4c10n", null, -1);
-        lista_cliente.agregarCliente(admin);
         initComponents();
+
+        ocultarAvisos();
     }
 
     /**
@@ -34,12 +33,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Close = new javax.swing.JLabel();
-        lblRegistrarContraseña = new javax.swing.JTextField();
         lblRegistrarUser = new javax.swing.JTextField();
-        lblLoginContraseña = new javax.swing.JTextField();
+        lblRegistrarContraseña = new javax.swing.JPasswordField();
+        lblLoginContraseña = new javax.swing.JPasswordField();
         lblLoginUser = new javax.swing.JTextField();
         BtnRegistrar = new javax.swing.JLabel();
         BtnLogin = new javax.swing.JLabel();
+        lblAvisoClaveL = new javax.swing.JLabel();
+        lblAvisoUsuarioR = new javax.swing.JLabel();
+        lblAvisoUsuarioL = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,24 +51,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CloseMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CloseMouseReleased(evt);
             }
         });
         jPanel1.add(Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1840, 20, 50, 60));
-
-        lblRegistrarContraseña.setBackground(new java.awt.Color(22, 27, 34));
-        lblRegistrarContraseña.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblRegistrarContraseña.setForeground(new java.awt.Color(204, 204, 204));
-        lblRegistrarContraseña.setText("Ingrese su contraseña");
-        lblRegistrarContraseña.setBorder(null);
-        lblRegistrarContraseña.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblRegistrarContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRegistrarContraseñaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(lblRegistrarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 560, 730, 50));
 
         lblRegistrarUser.setBackground(new java.awt.Color(22, 27, 34));
         lblRegistrarUser.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -74,22 +63,47 @@ public class LoginFrame extends javax.swing.JFrame {
         lblRegistrarUser.setText("Ingrese su nombre de usuario");
         lblRegistrarUser.setBorder(null);
         lblRegistrarUser.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblRegistrarUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRegistrarUserMouseClicked(evt);
+        lblRegistrarUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblRegistrarUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lblRegistrarUserFocusLost(evt);
             }
         });
         jPanel1.add(lblRegistrarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 390, 730, 50));
 
+        lblRegistrarContraseña.setBackground(new java.awt.Color(22, 27, 34));
+        lblRegistrarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblRegistrarContraseña.setForeground(new java.awt.Color(204, 204, 204));
+        lblRegistrarContraseña.setText("              ");
+        lblRegistrarContraseña.setBorder(null);
+        lblRegistrarContraseña.setDoubleBuffered(true);
+        lblRegistrarContraseña.setEchoChar('\u00d7');
+        lblRegistrarContraseña.setSelectionColor(new java.awt.Color(0, 240, 181));
+        lblRegistrarContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblRegistrarContraseñaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lblRegistrarContraseñaFocusLost(evt);
+            }
+        });
+        jPanel1.add(lblRegistrarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 560, 730, 50));
+
         lblLoginContraseña.setBackground(new java.awt.Color(19, 24, 30));
-        lblLoginContraseña.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblLoginContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblLoginContraseña.setForeground(new java.awt.Color(204, 204, 204));
-        lblLoginContraseña.setText("Ingrese su contraseña");
+        lblLoginContraseña.setText("              ");
         lblLoginContraseña.setBorder(null);
+        lblLoginContraseña.setEchoChar('\u00d7');
         lblLoginContraseña.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblLoginContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoginContraseñaMouseClicked(evt);
+        lblLoginContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblLoginContraseñaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lblLoginContraseñaFocusLost(evt);
             }
         });
         jPanel1.add(lblLoginContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, 730, 50));
@@ -100,36 +114,44 @@ public class LoginFrame extends javax.swing.JFrame {
         lblLoginUser.setText("Ingrese su nombre de usuario");
         lblLoginUser.setBorder(null);
         lblLoginUser.setSelectionColor(new java.awt.Color(0, 240, 181));
-        lblLoginUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoginUserMouseClicked(evt);
+        lblLoginUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblLoginUserFocusGained(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblLoginUserMouseExited(evt);
-            }
-        });
-        lblLoginUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblLoginUserActionPerformed(evt);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lblLoginUserFocusLost(evt);
             }
         });
         jPanel1.add(lblLoginUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 730, 50));
 
         BtnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnRegistrarMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BtnRegistrarMouseReleased(evt);
             }
         });
         jPanel1.add(BtnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 770, 320, 50));
 
         BtnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnLoginMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BtnLoginMouseReleased(evt);
             }
         });
         jPanel1.add(BtnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 770, 330, 50));
+
+        lblAvisoClaveL.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoClaveL.setText("Contraseña incorrecta");
+        jPanel1.add(lblAvisoClaveL, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 250, -1));
+
+        lblAvisoUsuarioR.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoUsuarioR.setText("El usuario ya está registrado");
+        lblAvisoUsuarioR.setToolTipText("");
+        jPanel1.add(lblAvisoUsuarioR, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 440, 250, -1));
+
+        lblAvisoUsuarioL.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoUsuarioL.setText("Usuario no registrado");
+        jPanel1.add(lblAvisoUsuarioL, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 250, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Login.png"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -148,62 +170,92 @@ public class LoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_CloseMouseClicked
+    private void lblRegistrarContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblRegistrarContraseñaFocusGained
+        // TODO add your handling code here:
+        if (lblRegistrarContraseña.getText().isBlank()) {
+            lblRegistrarContraseña.setText("");
+        }
+    }//GEN-LAST:event_lblRegistrarContraseñaFocusGained
 
-    private void BtnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLoginMouseClicked
-        if (!lblLoginUser.getText().equals(null) 
-                && !lblLoginContraseña.getText().equals(null)) {
+    private void lblRegistrarContraseñaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblRegistrarContraseñaFocusLost
+        // TODO add your handling code here:
+        if (lblRegistrarContraseña.getText().isBlank()) {
+            lblRegistrarContraseña.setText("              ");
+        }
+    }//GEN-LAST:event_lblRegistrarContraseñaFocusLost
+
+    private void lblRegistrarUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblRegistrarUserFocusGained
+        // TODO add your handling code here:
+        if (lblRegistrarUser.getText().equalsIgnoreCase("Ingrese su nombre de usuario")) {
+            lblRegistrarUser.setText("");
+        }
+    }//GEN-LAST:event_lblRegistrarUserFocusGained
+
+    private void lblRegistrarUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblRegistrarUserFocusLost
+        // TODO add your handling code here:
+        if (lblRegistrarUser.getText().isBlank()) {
+            lblRegistrarUser.setText("Ingrese su nombre de usuario");
+        }
+    }//GEN-LAST:event_lblRegistrarUserFocusLost
+
+    private void lblLoginUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblLoginUserFocusGained
+        // TODO add your handling code here:
+        if (lblLoginUser.getText().equalsIgnoreCase("Ingrese su nombre de usuario")) {
+            lblLoginUser.setText("");
+        }
+    }//GEN-LAST:event_lblLoginUserFocusGained
+
+    private void lblLoginUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblLoginUserFocusLost
+        // TODO add your handling code here:
+        if (lblLoginUser.getText().isBlank()) {
+            lblLoginUser.setText("Ingrese su nombre de usuario");
+        }
+    }//GEN-LAST:event_lblLoginUserFocusLost
+
+    private void lblLoginContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblLoginContraseñaFocusGained
+        // TODO add your handling code here:
+        if (lblLoginContraseña.getText().isBlank()) {
+            lblLoginContraseña.setText("");
+        }
+    }//GEN-LAST:event_lblLoginContraseñaFocusGained
+
+    private void lblLoginContraseñaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblLoginContraseñaFocusLost
+        // TODO add your handling code here:
+        if (lblLoginContraseña.getText().isBlank()) {
+            lblLoginContraseña.setText("              ");
+        }
+    }//GEN-LAST:event_lblLoginContraseñaFocusLost
+
+    private void CloseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseReleased
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_CloseMouseReleased
+
+    private void BtnLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLoginMouseReleased
+        // TODO add your handling code here:
+        if (!lblLoginUser.getText().isBlank()
+                && !lblLoginContraseña.getText().isBlank()) {
             if (gc.loginCliente()) {
                 InicioFrame inicio = new InicioFrame();
                 inicio.setVisible(true);
+                this.dispose();
             }
         }
-    }//GEN-LAST:event_BtnLoginMouseClicked
+    }//GEN-LAST:event_BtnLoginMouseReleased
 
-    private void lblLoginUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginUserMouseClicked
-        lblLoginUser.setText("");
-        lblLoginUser.setForeground(Color.decode("#f3e8ee"));
-    }//GEN-LAST:event_lblLoginUserMouseClicked
-
-    private void lblLoginContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginContraseñaMouseClicked
-        lblLoginContraseña.setText("");
-        lblLoginContraseña.setForeground(Color.decode("#f3e8ee"));
-    }//GEN-LAST:event_lblLoginContraseñaMouseClicked
-
-    private void lblLoginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblLoginUserActionPerformed
+    private void BtnRegistrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistrarMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblLoginUserActionPerformed
+        String usuario = lblRegistrarUser.getText();
+        String contraseña = lblRegistrarContraseña.getText();
 
-    private void lblLoginUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginUserMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblLoginUserMouseExited
-
-    private void lblRegistrarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarUserMouseClicked
-        lblRegistrarUser.setText("");
-        lblRegistrarUser.setForeground(Color.decode("#f3e8ee"));
-    }//GEN-LAST:event_lblRegistrarUserMouseClicked
-
-    private void lblRegistrarContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarContraseñaMouseClicked
-        lblRegistrarContraseña.setText("");
-        lblRegistrarContraseña.setForeground(Color.decode("#f3e8ee"));
-    }//GEN-LAST:event_lblRegistrarContraseñaMouseClicked
-
-    private void BtnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegistrarMouseClicked
-        //  Registrar
-        if (!lblRegistrarUser.getText().equals(null)
-                && !lblRegistrarContraseña.getText().equals(null)) {
+        if (!usuario.isBlank() && !usuario.contains(" ")
+                && !contraseña.isBlank() && !contraseña.contains(" ")) {
             if (gc.registrarCliente()) {
-                lblRegistrarUser.setText("");
-                lblRegistrarContraseña.setText("");
-                InicioFrame inicio = new InicioFrame();
-                inicio.setVisible(true);
-            } else {
-                
+                lblRegistrarUser.setText("Ingrese su nombre de usuario");
+                lblRegistrarContraseña.setText("              ");
             }
         }
-    }//GEN-LAST:event_BtnRegistrarMouseClicked
+    }//GEN-LAST:event_BtnRegistrarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -241,17 +293,35 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     public Cliente registrarCliente() {
-        Cliente cliente = new Cliente(lblRegistrarUser.getText(),
-                lblRegistrarContraseña.getText(), "", 0);
+        Cliente cliente = new Cliente();
+        cliente.setUsuario(lblRegistrarUser.getText());
+        cliente.setContraseña(lblRegistrarContraseña.getText());
         return cliente;
     }
 
     public Cliente ingresoCliente() {
         Cliente cliente = new Cliente();
-        System.out.println(lblLoginContraseña.getText());
         cliente.setUsuario(lblLoginUser.getText());
         cliente.setContraseña(lblLoginContraseña.getText());
         return cliente;
+    }
+
+    public void mostrarRegistrado() {
+        lblAvisoUsuarioR.setVisible(true);
+    }
+
+    public void mostrarNoRegistrado() {
+        lblAvisoUsuarioL.setVisible(true);
+    }
+
+    public void mostrarContraseñaIncorrecta() {
+        lblAvisoClaveL.setVisible(true);
+    }
+
+    public void ocultarAvisos() {
+        lblAvisoClaveL.setVisible(false);
+        lblAvisoUsuarioL.setVisible(false);
+        lblAvisoUsuarioR.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -260,9 +330,12 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Fondo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField lblLoginContraseña;
+    private javax.swing.JLabel lblAvisoClaveL;
+    private javax.swing.JLabel lblAvisoUsuarioL;
+    private javax.swing.JLabel lblAvisoUsuarioR;
+    private javax.swing.JPasswordField lblLoginContraseña;
     private javax.swing.JTextField lblLoginUser;
-    private javax.swing.JTextField lblRegistrarContraseña;
+    private javax.swing.JPasswordField lblRegistrarContraseña;
     private javax.swing.JTextField lblRegistrarUser;
     // End of variables declaration//GEN-END:variables
 }

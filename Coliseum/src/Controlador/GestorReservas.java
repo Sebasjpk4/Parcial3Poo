@@ -25,16 +25,20 @@ public class GestorReservas {
         }
         return instance;
     }
-    
-    public void crearReservacion(Reserva reserva){
+
+    public void crearReservacion(Reserva reserva) {
         reservas.registrarReserva(reserva);
     }
-    
-    public void editarReservacion(Reserva reserva){
+
+    public void editarReservacion(Reserva reserva) {
         reservas.editarReserva(reserva);
     }
-    
-    public void cancelarReservacion(int idreserva){
+
+    public void cancelarReservacion(int idreserva) {
         reservas.eliminarReserva(idreserva);
+    }
+
+    public boolean validarHorario(Reserva reserva) {
+        return reservas.validarHorario(reserva);
     }
 }

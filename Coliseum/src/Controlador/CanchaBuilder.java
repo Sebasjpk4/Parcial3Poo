@@ -6,7 +6,7 @@ import Modelo.Cancha;
  *
  * @author Alfonso
  */
-public class CanchaBuilder implements Builder {
+public class CanchaBuilder implements ICanchaBuilder {
 
     private static CanchaBuilder instance;
     private Cancha cancha;
@@ -60,5 +60,10 @@ public class CanchaBuilder implements Builder {
     @Override
     public void setTipo(String tipo) {
         cancha.setTipo(tipo);
+    }
+
+    @Override
+    public Cancha getCancha() {
+        return cancha;
     }
 }

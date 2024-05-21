@@ -1,9 +1,14 @@
 package Vista;
 
-import Controlador.Validaciones;
+import Controlador.CanchaBuilder;
+import Controlador.GestorReservas;
+import Controlador.ReservaBuilder;
+import Modelo.Horario;
+import Modelo.ListaReservas;
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -12,16 +17,32 @@ import javax.swing.ImageIcon;
 public class ConfirmarReservaFrame extends javax.swing.JFrame {
 
     public int sw = 0;
-    public int Horas;
-//    Icon Imagenes  = new ImageIcon(getClass().getResource("1hora.png"));
-    ImageIcon icono;
+    public int Horas = 0;
+    
+    Calendar cal = Calendar.getInstance();
+    Date maxDate;
+    Date minDate;
+    ReservaBuilder rb = ReservaBuilder.getInstance();
+    CanchaBuilder cb = CanchaBuilder.getInstance();
+    ListaReservas reservas = ListaReservas.getInstance();
+    GestorReservas gr = GestorReservas.getInstance(reservas, this);
+    
 
     /**
      * Creates new form ConfirmarReserva
      */
     public ConfirmarReservaFrame() {
         initComponents();
+
+        cal.setTime(new Date());
+        cal.add(Calendar.DAY_OF_YEAR, 1);
+        minDate = cal.getTime();
+        cal.add(Calendar.DAY_OF_YEAR, 6);
+        maxDate = cal.getTime();
+        jdc.setMinSelectableDate(minDate);
+        jdc.setMaxSelectableDate(maxDate);
         pnlSelector.setVisible(false);
+        lblAvisoHorario.setVisible(false);
     }
 
     /**
@@ -35,9 +56,11 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Close = new javax.swing.JLabel();
+        lblAvisoHorario = new javax.swing.JLabel();
+        jdc = new com.toedter.calendar.JDateChooser();
+        lblFecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lblFecha = new javax.swing.JTextField();
         lblNombre = new javax.swing.JTextField();
         lblElegir = new javax.swing.JLabel();
         lblElegido = new javax.swing.JLabel();
@@ -52,11 +75,15 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         optAllDay = new javax.swing.JLabel();
         lblbg = new javax.swing.JLabel();
         labelHorasC = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jcbConos = new javax.swing.JCheckBox();
+        jcbCauchos = new javax.swing.JCheckBox();
+        jcbPesas = new javax.swing.JCheckBox();
+        jcbBotiquin = new javax.swing.JCheckBox();
+        jcbMedico = new javax.swing.JCheckBox();
+        jcbEntrenador = new javax.swing.JCheckBox();
         btnConfirmar = new javax.swing.JLabel();
         jcbHora = new javax.swing.JComboBox<>();
-        jcbMinutos = new javax.swing.JComboBox<>();
+        lblMinutos = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,25 +99,18 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         });
         jPanel1.add(Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1840, 20, 60, 60));
 
-        jScrollPane1.setBackground(new java.awt.Color(13, 17, 23));
+        lblAvisoHorario.setForeground(new java.awt.Color(255, 0, 0));
+        lblAvisoHorario.setText("Horario no disponible");
+        jPanel1.add(lblAvisoHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 250, -1));
 
-        jTable1.setBackground(new java.awt.Color(13, 17, 23));
-        jTable1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jdc.setBackground(new java.awt.Color(15, 19, 25));
+        jdc.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jdc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jdcFocusGained(evt);
             }
-        ));
-        jTable1.setSelectionBackground(new java.awt.Color(0, 240, 181));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 310, 680, 600));
+        });
+        jPanel1.add(jdc, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 432, 440, 50));
 
         lblFecha.setBackground(new java.awt.Color(22, 27, 34));
         lblFecha.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -111,7 +131,27 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
                 lblFechaActionPerformed(evt);
             }
         });
-        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 450, 40));
+        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 430, 50));
+
+        jScrollPane1.setBackground(new java.awt.Color(13, 17, 23));
+
+        jTable1.setBackground(new java.awt.Color(13, 17, 23));
+        jTable1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 240, 181));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 310, 680, 600));
 
         lblNombre.setBackground(new java.awt.Color(22, 27, 34));
         lblNombre.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -214,19 +254,50 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         labelHorasC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1x/CantidadDeHoras.png"))); // NOI18N
         jPanel1.add(labelHorasC, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 760, 70));
 
-        jCheckBox2.setBackground(new java.awt.Color(13, 17, 23));
-        jCheckBox2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Entrenador");
-        jCheckBox2.setBorder(null);
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 750, 140, 30));
+        jcbConos.setBackground(new java.awt.Color(13, 17, 23));
+        jcbConos.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbConos.setForeground(new java.awt.Color(255, 255, 255));
+        jcbConos.setText("Conos");
+        jcbConos.setToolTipText("");
+        jcbConos.setBorder(null);
+        jPanel1.add(jcbConos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 790, 140, 30));
 
-        jCheckBox1.setBackground(new java.awt.Color(13, 17, 23));
-        jCheckBox1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Entrenador");
-        jCheckBox1.setBorder(null);
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 710, 140, 30));
+        jcbCauchos.setBackground(new java.awt.Color(13, 17, 23));
+        jcbCauchos.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbCauchos.setForeground(new java.awt.Color(255, 255, 255));
+        jcbCauchos.setText("Cauchos");
+        jcbCauchos.setToolTipText("");
+        jcbCauchos.setBorder(null);
+        jPanel1.add(jcbCauchos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 750, 140, 30));
+
+        jcbPesas.setBackground(new java.awt.Color(13, 17, 23));
+        jcbPesas.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbPesas.setForeground(new java.awt.Color(255, 255, 255));
+        jcbPesas.setText("Pesas");
+        jcbPesas.setToolTipText("");
+        jcbPesas.setBorder(null);
+        jPanel1.add(jcbPesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 710, 140, 30));
+
+        jcbBotiquin.setBackground(new java.awt.Color(13, 17, 23));
+        jcbBotiquin.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbBotiquin.setForeground(new java.awt.Color(255, 255, 255));
+        jcbBotiquin.setText("Botiquín");
+        jcbBotiquin.setBorder(null);
+        jPanel1.add(jcbBotiquin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 790, 140, 30));
+
+        jcbMedico.setBackground(new java.awt.Color(13, 17, 23));
+        jcbMedico.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbMedico.setForeground(new java.awt.Color(255, 255, 255));
+        jcbMedico.setText("médico");
+        jcbMedico.setBorder(null);
+        jPanel1.add(jcbMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 750, 140, 30));
+
+        jcbEntrenador.setBackground(new java.awt.Color(13, 17, 23));
+        jcbEntrenador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jcbEntrenador.setForeground(new java.awt.Color(255, 255, 255));
+        jcbEntrenador.setText("Entrenador");
+        jcbEntrenador.setBorder(null);
+        jPanel1.add(jcbEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 710, 140, 30));
 
         btnConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,11 +307,20 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1510, 980, 330, 50));
 
-        jcbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jcbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, -1, -1));
+        jcbHora.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jcbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
+        jcbHora.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jcbHora.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jcbHoraFocusGained(evt);
+            }
+        });
+        jPanel1.add(jcbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 80, 50));
 
-        jcbMinutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jcbMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, -1, -1));
+        lblMinutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMinutos.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinutos.setText("00");
+        jPanel1.add(lblMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 60, 30));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ConfirmarReserva.png"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -294,21 +374,27 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
         if (sw == 0) {
             pnlSelector.setVisible(true);
             sw = 1;
-            icono = new ImageIcon("img/Seleccionar/ElegirClick.png");
+            //ImageIcon icono = new ImageIcon("img/Seleccionar/ElegirClick.png");
             //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
         } else {
             pnlSelector.setVisible(false);
             sw = 0;
         }
-        lblElegido.setText(Validaciones.Elegir(Horas));
+        //lblElegido.setText(Validaciones.Elegir(Horas));
 
     }//GEN-LAST:event_lblElegirMouseClicked
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
-        ConfirmarReservaFrame v = new ConfirmarReservaFrame();
-        v.setVisible(true);
-        String min = jcbMinutos.getSelectedItem().toString();
-        // 
+        if (validarHora()) {
+            rb.setHorario(definirHorario());
+            agregarAdicionales();
+            rb.setCancha(cb.getCancha());
+            gr.crearReservacion(rb.getReserva());
+            VentaCorrectaFrame v = new VentaCorrectaFrame();
+            v.setVisible(true);
+        } else {
+            lblAvisoHorario.setVisible(true);
+        }
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
     private void optAllDayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optAllDayMouseClicked
@@ -377,15 +463,21 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
     private void optPrimeraHoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optPrimeraHoraMouseClicked
         //icono = new ImageIcon("img/Seleccionar/1hora.png");
         //lblbg.setIcon(new ImageIcon(icono.getImage().getScaledInstance(760, 430, Image.SCALE_DEFAULT)));
-        //lblElegido.setText("1 Hora");
+        lblElegido.setText("1 Hora");
         pnlSelector.setVisible(false);
         sw = 0;
         Horas = 1;
     }//GEN-LAST:event_optPrimeraHoraMouseClicked
 
-    private void SetImageLabel() {
+    private void jdcFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jdcFocusGained
+        // TODO add your handling code here:
+        lblAvisoHorario.setVisible(false);
+    }//GEN-LAST:event_jdcFocusGained
 
-    }
+    private void jcbHoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbHoraFocusGained
+        // TODO add your handling code here:
+        lblAvisoHorario.setVisible(false);
+    }//GEN-LAST:event_jcbHoraFocusGained
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -414,27 +506,83 @@ public class ConfirmarReservaFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ConfirmarReservaFrame().setVisible(true);
             }
         });
     }
 
+    private boolean validarHora() {
+        Date fecha = jdc.getDate();
+        if (fecha == null) {
+            return false;
+        }
+        if (Horas == 0) {
+            return false;
+        }
+        Time inicio = Time.valueOf(jcbHora.getSelectedItem().toString() + ":00:00");
+        int horaFin = Horas + Integer.parseInt((String) jcbHora.getSelectedItem());
+        Time fin = Time.valueOf(String.valueOf(horaFin) + ":00:00");
+        if (horaFin > 17) {
+            return false;
+        }
+        return true;
+    }
+
+    private Horario definirHorario() {
+        if (!validarHora()) {
+            return null;
+        }
+        Date fecha = jdc.getDate();
+        Time inicio = Time.valueOf(jcbHora.getSelectedItem().toString() + ":00:00");
+        int horaFin = Horas + Integer.parseInt((String) jcbHora.getSelectedItem());
+        Time fin = Time.valueOf(String.valueOf(horaFin) + ":00:00");
+        return new Horario(fecha, inicio, fin);
+    }
+    
+    private void agregarAdicionales(){
+        if (jcbBotiquin.isSelected()) {
+            cb.setBotiquin(true);
+        }
+        if (jcbCauchos.isSelected()) {
+            cb.setCauchos(true);
+        }
+        if (jcbConos.isSelected()) {
+            cb.setConos(true);
+        }
+        if (jcbEntrenador.isSelected()) {
+            cb.setEntrenador(true);
+        }
+        if (jcbMedico.isSelected()) {
+            cb.setMedico(true);
+        }
+        if (jcbPesas.isSelected()) {
+            cb.setPesas(true);
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Close;
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel btnConfirmar;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JCheckBox jcbBotiquin;
+    private javax.swing.JCheckBox jcbCauchos;
+    private javax.swing.JCheckBox jcbConos;
+    private javax.swing.JCheckBox jcbEntrenador;
     private javax.swing.JComboBox<String> jcbHora;
-    private javax.swing.JComboBox<String> jcbMinutos;
+    private javax.swing.JCheckBox jcbMedico;
+    private javax.swing.JCheckBox jcbPesas;
+    private com.toedter.calendar.JDateChooser jdc;
     private javax.swing.JLabel labelHorasC;
+    private javax.swing.JLabel lblAvisoHorario;
     private javax.swing.JLabel lblElegido;
     private javax.swing.JLabel lblElegir;
     private javax.swing.JTextField lblFecha;
+    private javax.swing.JLabel lblMinutos;
     private javax.swing.JTextField lblNombre;
     private javax.swing.JLabel lblbg;
     private javax.swing.JLabel optAllDay;

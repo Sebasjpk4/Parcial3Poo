@@ -1,10 +1,12 @@
 package Controlador;
 
+import Modelo.Cancha;
+
 /**
  *
  * @author Alfonso
  */
-public interface Builder {
+public interface ICanchaBuilder {
 
     public void setTipo(String tipo);
 
@@ -19,6 +21,8 @@ public interface Builder {
     public void setConos(boolean conos);
 
     public void setMedico(boolean medico);
+    
+    public Cancha getCancha();
 
     public void reset();
 }
